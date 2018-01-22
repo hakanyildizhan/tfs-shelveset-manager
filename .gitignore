@@ -1,0 +1,6 @@
+# NuGet Packages
+**/packages/*
+!**/packages/repositories.config
+**/bin/*
+**/obj/*
+src/.vs/*
