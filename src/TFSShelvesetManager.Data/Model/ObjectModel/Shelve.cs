@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TFSShelvesetManager.Data.Model.Base;
 
-namespace TFSShelvesetManager.Data.Model
+namespace TFSShelvesetManager.Data.Model.ObjectModel
 {
-    public class Shelve
+    public class Shelve : IShelve
     {
-        public string ShelveName { get; set; }
+        public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
         public virtual ICollection<File> Files { get; set; }
         public virtual Build Build { get; set; }

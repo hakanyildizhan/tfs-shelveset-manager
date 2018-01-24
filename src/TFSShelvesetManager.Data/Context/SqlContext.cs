@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TFSShelvesetManager.Data.Model;
+using TFSShelvesetManager.Data.Model.ObjectModel;
 
 namespace TFSShelvesetManager.Data.Context
 {
