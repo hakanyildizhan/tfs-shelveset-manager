@@ -59,35 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\ApplicationCache.cs" />
-    <Compile Include="Cache\CacheHelpers.cs" />
+    <Compile Include="Cache\ExtensionMethods.cs" />
     <Compile Include="Cache\DataChangeMonitor.cs" />
     <Compile Include="Cache\PolicyFactory.cs" />
     <Compile Include="Context\ContextFactory.cs" />
     <Compile Include="Context\ContextImpl.cs" />
     <Compile Include="Context\SqlContext.cs" />
     <Compile Include="Context\IShelvesetManagerContext.cs" />
-    <Compile Include="Model\Base\IBuild.cs" />
-    <Compile Include="Model\Base\ICodeReview.cs" />
-    <Compile Include="Model\Base\IFile.cs" />
-    <Compile Include="Model\Base\IModel.cs" />
-    <Compile Include="Model\Base\IPendingChanges.cs" />
-    <Compile Include="Model\Base\IShelve.cs" />
-    <Compile Include="Model\Base\IWorkItem.cs" />
-    <Compile Include="Model\Base\IWorkspace.cs" />
-    <Compile Include="Model\ObjectModel\Build.cs" />
-    <Compile Include="Model\CacheModel\Build.cs" />
-    <Compile Include="Model\CacheModel\CodeReview.cs" />
-    <Compile Include="Model\CacheModel\File.cs" />
-    <Compile Include="Model\CacheModel\PendingChanges.cs" />
-    <Compile Include="Model\CacheModel\Shelve.cs" />
-    <Compile Include="Model\CacheModel\WorkItem.cs" />
-    <Compile Include="Model\CacheModel\Workspace.cs" />
-    <Compile Include="Model\ObjectModel\CodeReview.cs" />
-    <Compile Include="Model\ObjectModel\File.cs" />
-    <Compile Include="Model\ObjectModel\PendingChanges.cs" />
-    <Compile Include="Model\ObjectModel\Shelve.cs" />
-    <Compile Include="Model\ObjectModel\WorkItem.cs" />
-    <Compile Include="Model\ObjectModel\Workspace.cs" />
+    <Compile Include="Model\Build.cs" />
+    <Compile Include="Model\CodeReview.cs" />
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\PendingChanges.cs" />
+    <Compile Include="Model\Shelve.cs" />
+    <Compile Include="Model\WorkItem.cs" />
+    <Compile Include="Model\Workspace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\CachedContext.cs" />
   </ItemGroup>

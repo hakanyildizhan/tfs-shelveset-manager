@@ -6,44 +6,48 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 using TFSShelvesetManager.Data.Model;
-using TFSShelvesetManager.Data.Model.Base;
 
 namespace TFSShelvesetManager.Data.Cache
 {
     public class ApplicationCache : MemoryCache
     {
 
-        public ApplicationCache() : base("ApplicationCache") { }
-        public ApplicationCache(string name, NameValueCollection config = null) : base(name, config)
-        {
-        }
-        public override DefaultCacheCapabilities DefaultCacheCapabilities
+		#region Constructor
+		public ApplicationCache() : base("ApplicationCache") { }
+		public ApplicationCache(string name, NameValueCollection config = null) : base(name, config)
+		{
+		} 
+		#endregion
+
+		public override DefaultCacheCapabilities DefaultCacheCapabilities
         {
             get { return DefaultCacheCapabilities.CacheRegions; }
         }
 
-        public void Purge()
-        {
-            DataChangeMonitor.Signal();
-        }
+		#region Public Methods
+		public void Insert<T>(string key, T value) where T : BaseModel
+		{
+			Set(key, value, GetPolicyForModel<T>(), nameof(T));
+		}
 
-        public void Purge<T>() where T : IModel
-        {
-            DataChangeMonitor.Signal(nameof(T));
-        }
+		public T Get<T>(string key) where T : BaseModel
+		{
+			return Get(key, nameof(T)) as T;
+		}
 
-        public void Insert<T>(string key, T value, string region) where T : class, IModel
-        {
-            Set(key, value, GetPolicyForModel<T>(), region);
-        }
+		public void Purge()
+		{
+			DataChangeMonitor.Signal();
+		}
 
-        public T Get<T>(string key, string region) where T : class, IModel
-        {
-            return Get(key, region) as T;
-        }
+		public void Purge<T>() where T : BaseModel
+		{
+			DataChangeMonitor.Signal(nameof(T));
+		} 
+		#endregion
 
-        #region Base Methods
-        public override void Set(string key, object value, CacheItemPolicy policy, string regionName = null)
+		#region Base Methods
+		public override void Set(string key, object value, CacheItemPolicy policy, string regionName = null)
         {
             base.Set(key, value, policy, regionName);
         }
@@ -57,11 +61,13 @@ namespace TFSShelvesetManager.Data.Cache
         {
             return base.Remove(key, regionName);
         }
-        #endregion
+		#endregion
 
-        private CacheItemPolicy GetPolicyForModel<T>() where T : IModel
-        {
-            return PolicyFactory.GetPolicy<T>();
-        }
-    }
+		#region Helpers
+		private CacheItemPolicy GetPolicyForModel<T>() where T : BaseModel
+		{
+			return PolicyFactory.GetPolicy<T>();
+		} 
+		#endregion
+	}
 }

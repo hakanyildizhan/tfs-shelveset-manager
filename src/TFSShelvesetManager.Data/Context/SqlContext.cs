@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TFSShelvesetManager.Data.Model.ObjectModel;
+using TFSShelvesetManager.Data.Model;
 
 namespace TFSShelvesetManager.Data.Context
 {
@@ -15,6 +15,7 @@ namespace TFSShelvesetManager.Data.Context
         public DbSet<PendingChanges> PendingChanges { get; set; }
         public DbSet<Shelve> Shelves { get; set; }
         public DbSet<WorkItem> WorkItems { get; set; }
-        public DbSet<Workspace> Workspaces { get; set; }
+		public DbSet<CodeReview> CodeReviews { get; set; }
+		public DbSet<Workspace> Workspaces { get; set; }
     }
 }
