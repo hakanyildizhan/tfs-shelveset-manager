@@ -8,6 +8,7 @@ namespace TFSShelvesetManager.Data.Model
 {
     public class CodeReview : WorkItem
     {
+        public virtual ICollection<CodeReview> CodeReviewLinks { get; set; }
         public CodeReviewStatus CodeReviewStatus { get; set; }
     }
 

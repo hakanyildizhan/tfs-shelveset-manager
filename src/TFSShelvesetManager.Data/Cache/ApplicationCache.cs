@@ -25,7 +25,7 @@ namespace TFSShelvesetManager.Data.Cache
         }
 
 		#region Public Methods
-		public void Insert<T>(string key, T value) where T : BaseModel
+		public void Insert<T>(string key, object value) where T : BaseModel
 		{
 			Set(key, value, GetPolicyForModel<T>(), nameof(T));
 		}

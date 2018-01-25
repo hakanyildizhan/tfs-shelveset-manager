@@ -61,6 +61,13 @@
     <Compile Include="Cache\ApplicationCache.cs" />
     <Compile Include="Cache\ExtensionMethods.cs" />
     <Compile Include="Cache\DataChangeMonitor.cs" />
+    <Compile Include="Cache\ObjectBuilder\BuildBuilder.cs" />
+    <Compile Include="Cache\ObjectBuilder\BuilderFactory.cs" />
+    <Compile Include="Cache\ObjectBuilder\BuilderImpl.cs" />
+    <Compile Include="Cache\ObjectBuilder\FileBuilder.cs" />
+    <Compile Include="Cache\ObjectBuilder\IObjectBuilder.cs" />
+    <Compile Include="Cache\ObjectBuilder\ShelveBuilder.cs" />
+    <Compile Include="Cache\ObjectBuilder\WorkItemBuilder.cs" />
     <Compile Include="Cache\PolicyFactory.cs" />
     <Compile Include="Context\ContextFactory.cs" />
     <Compile Include="Context\ContextImpl.cs" />
