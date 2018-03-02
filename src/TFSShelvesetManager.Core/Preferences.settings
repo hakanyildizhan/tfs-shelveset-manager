@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TFSShelvesetManager.Core" GeneratedClassName="Preferences">
+  <Profiles />
+  <Settings>
+    <Setting Name="ArtifactFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TFSShelvesetManager</Value>
+    </Setting>
+    <Setting Name="WorkspaceFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Workspaces</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

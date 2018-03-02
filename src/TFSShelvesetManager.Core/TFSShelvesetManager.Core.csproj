@@ -267,7 +267,14 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Model\ShelvingArgs.cs" />
+    <Compile Include="Model\WorkspaceArgs.cs" />
+    <Compile Include="Preferences.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Preferences.settings</DependentUpon>
+    </Compile>
     <Compile Include="Service\VersionControl.cs" />
     <Compile Include="Service\WorkItemControl.cs" />
     <Compile Include="Credentials\CredentialManager.cs" />
@@ -276,10 +283,15 @@
     <Compile Include="Credentials\StringCipher.cs" />
     <Compile Include="Subscription\SubscriptionManager.cs" />
     <Compile Include="TFSManager.cs" />
+    <Compile Include="ViewModel\ShelvesetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Preferences.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Preferences.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

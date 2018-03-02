@@ -10,19 +10,29 @@ namespace TFSShelvesetManager.Core.Model
     public class ShelvingArgs
     {
         /// <summary>
-        /// Name of the <see cref="Workspace"/> to perform the shelving operation for
+        /// Name of the <see cref="Workspace"/> to perform the shelving operation for.
         /// </summary>
         public string WorkspaceName { get; set; }
 
         /// <summary>
-        /// Name of the <see cref="Shelveset"/>
+        /// Name of the <see cref="Shelveset"/>.
         /// </summary>
         public string ShelvesetName { get; set; }
 
         /// <summary>
-        /// How to perform this shelving action
+        /// How to perform this shelving action.
         /// </summary>
         public ShelvingOption ShelvingOption { get; set; }
+
+        /// <summary>
+        /// Work item info to associate with the <see cref="Shelveset"/>.
+        /// </summary>
+        public WorkItemCheckinInfo[] AssociatedWorkItemInfo { get; set; }
+
+        /// <summary>
+        /// Remarks about the changes in the <see cref="Shelveset"/>.
+        /// </summary>
+        public string Comment { get; set; }
     }
 
     /// <summary>

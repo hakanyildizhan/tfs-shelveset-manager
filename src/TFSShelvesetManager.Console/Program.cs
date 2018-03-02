@@ -5,8 +5,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TFSShelvesetManager.Core;
+using TFSShelvesetManager.Core.Helpers;
 using TFSShelvesetManager.Core.Model;
 using TFSShelvesetManager.Core.Service;
+using TFSShelvesetManager.Core.ViewModel;
 
 namespace TFSShelvesetManager.Console
 {
@@ -14,15 +16,19 @@ namespace TFSShelvesetManager.Console
     {
         static void Main(string[] args)
         {
-            TFSManager tfs = new TFSManager();
-            VersionControl vc = tfs.GetService<VersionControl>();
-            ShelvingArgs shelvingArgs = new ShelvingArgs()
-            {
-                WorkspaceName = "WM5_WinCC_HW_Work",
-                ShelvesetName = "test_shelve",
-                ShelvingOption = ShelvingOption.Normal
-            };
-            vc.ShelvePendingChanges(shelvingArgs);
+            FileHelper.EnsureArtifactFolders();
+            //TFSManager tfs = new TFSManager();
+            //VersionControl vc = tfs.GetService<VersionControl>();
+            //ShelvingArgs shelvingArgs = new ShelvingArgs()
+            //{
+            //    WorkspaceName = "WM5_WinCC_HW_Work",
+            //    ShelvesetName = "test_shelve",
+            //    ShelvingOption = ShelvingOption.Normal
+            //};
+            //vc.ShelvePendingChanges(shelvingArgs);
+
+            ShelvesetViewModel shelvesetVM = new ShelvesetViewModel();
+            shelvesetVM.UpdateShelvesetTest("RQ2138190_work");
 
             ReadLine();
         }
