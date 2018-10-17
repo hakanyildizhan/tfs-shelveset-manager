@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -178,6 +179,64 @@ namespace TFSShelvesetManager.Core.Service
             Workspace ws = this.GetWorkspace(workspaceName);
             if (ws != null)
                 ws.Delete();
+        }
+
+        /// <summary>
+        /// Performs a merge from a source branch to a target branch both of which have different MDD file versions. Workspace needs to have no pending changes prior to performing this action. Shortcomings:
+        /// <para></para>
+        /// Version part of imports inside target files (e.g. IMPORT "..._V15.0.0.0") as well as file headers show the old version after the operation (because files from the source branch were written so): these lines should be the same as before (as initially created by the HSP creator.)
+        /// <para></para>
+        /// Changes should be built to see if there is any errors. One particular thing to do is to ensure correct/new version of files are imported, in case a new, commonly used file is created. (e.g. AllVar MDD)
+        /// <para></para>
+        /// When the same change/changes are done on a file on both branches in different dates, merge operation may produce unchanged files showed as [merge] only. These can be undone.
+        /// <para></para>
+        /// If a changeset that is higher than given range exists for a target file, this changeset should not be lost - it should be merged as well. Note: to avoid this, take the starting changeset from source branch; and the ending changeset from the TARGET branch (if it is higher on considered path)
+        /// <para></para>
+        /// In scenarios where: a specific device was removed in HSP manifest files for a specific update, and should exist for the target service pack/update, these changes should be made manually. There is no way to automate this. Such files include: Hwcn-Sirius3RW5-Lifelist-Configuration.xml, Manifest.xml, manifest-texts-en.xml, manifest-texts-de.xml.
+        /// </summary>
+        /// <param name="mergeArgs">Arguments for the merge operation.</param>
+        public void MergeBetweenVersions(MergeArgs mergeArgs)
+        {
+            this.Merge(mergeArgs);
+            Workspace workspace = GetWorkspace(mergeArgs.TargetWorkspaceName);
+            List<PendingChange> pendingChanges = workspace.GetPendingChangesEnumerable().ToList();
+            StringBuilder fileContents = new StringBuilder();
+
+            foreach (var change in pendingChanges)
+            {
+                string targetFile = Path.Combine(change.LocalOrServerFolder, change.FileName.Replace(mergeArgs.SourceMDDVersion, mergeArgs.TargetMDDVersion));
+
+                if (change.FileName.Contains(mergeArgs.SourceMDDVersion) && 
+                    vcs.ServerItemExists(change.ServerItem.Replace(mergeArgs.SourceMDDVersion, mergeArgs.TargetMDDVersion), ItemType.File))
+                {
+                    workspace.PendEdit(targetFile);
+                    string sourceFile = Path.Combine(change.LocalOrServerFolder.Replace(mergeArgs.TargetBranch, mergeArgs.SourceBranch), change.FileName);
+                    fileContents.Append(File.ReadAllText(sourceFile));
+                    File.WriteAllText(targetFile, fileContents.ToString());
+                    fileContents.Clear();
+                    workspace.Undo(sourceFile.Replace(mergeArgs.SourceBranch, mergeArgs.TargetBranch));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Merges changes from a source branch to a target branch.
+        /// </summary>
+        /// <param name="mergeArgs">Arguments for the merge operation.</param>
+        public void Merge(MergeArgs mergeArgs)
+        {
+            Workspace workspace = GetWorkspace(mergeArgs.TargetWorkspaceName);
+
+            string sourceBranchPath = mergeArgs.SourceBranchPathToConsider;
+            string targetBranchPath = mergeArgs.TargetBranchPathToConsider;
+            VersionSpec changesetStart = new ChangesetVersionSpec(mergeArgs.ChangesetStart);
+            VersionSpec changesetEnd = new ChangesetVersionSpec(mergeArgs.ChangesetEnd);
+
+            MergeOptions mergeOption = MergeOptions.None;
+            if (mergeArgs.Baseless) mergeOption = MergeOptions.Baseless;
+
+            // pend the merge
+            workspace.Merge(sourceBranchPath, targetBranchPath, changesetStart, changesetEnd, LockLevel.CheckOut, RecursionType.Full, mergeOption);
         }
     }
 }
