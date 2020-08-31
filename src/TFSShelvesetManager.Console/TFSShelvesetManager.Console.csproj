@@ -55,9 +55,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TFSShelvesetManager.Core\TFSShelvesetManager.Core.csproj">
+    <ProjectReference Include="..\TFSHelper.Core\TFSHelper.Core.csproj">
       <Project>{5d9d44b9-1687-4579-a66c-fea3d528195e}</Project>
-      <Name>TFSShelvesetManager.Core</Name>
+      <Name>TFSHelper.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

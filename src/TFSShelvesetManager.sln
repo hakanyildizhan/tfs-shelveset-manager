@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSShelvesetManager.Console", "TFSShelvesetManager.Console\TFSShelvesetManager.Console.csproj", "{796D4871-DB5A-457C-B6C7-52AB6B20E64C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSShelvesetManager.Core", "TFSShelvesetManager.Core\TFSShelvesetManager.Core.csproj", "{5D9D44B9-1687-4579-A66C-FEA3D528195E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeHelper", "MergeHelper\MergeHelper.csproj", "{AB832096-FAE0-4E4E-A8B1-5C043AE1C2E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSShelvesetManager.Data", "TFSShelvesetManager.Data\TFSShelvesetManager.Data.csproj", "{EE8B47FF-9F3C-49A5-B9CD-21905F5FBF70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSHelper.Core", "TFSHelper.Core\TFSHelper.Core.csproj", "{5D9D44B9-1687-4579-A66C-FEA3D528195E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSHelper.Data", "TFSHelper.Data\TFSHelper.Data.csproj", "{EE8B47FF-9F3C-49A5-B9CD-21905F5FBF70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{796D4871-DB5A-457C-B6C7-52AB6B20E64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{796D4871-DB5A-457C-B6C7-52AB6B20E64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{796D4871-DB5A-457C-B6C7-52AB6B20E64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB832096-FAE0-4E4E-A8B1-5C043AE1C2E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB832096-FAE0-4E4E-A8B1-5C043AE1C2E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB832096-FAE0-4E4E-A8B1-5C043AE1C2E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB832096-FAE0-4E4E-A8B1-5C043AE1C2E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D9D44B9-1687-4579-A66C-FEA3D528195E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D9D44B9-1687-4579-A66C-FEA3D528195E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D9D44B9-1687-4579-A66C-FEA3D528195E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -30,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6DDCB91-0194-48AF-8AA7-8B66AF5D52E3}
 	EndGlobalSection
 EndGlobal

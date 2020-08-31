@@ -1,0 +1,57 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MergeHelper" GeneratedClassName="Preferences">
+  <Profiles />
+  <Settings>
+    <Setting Name="PACKAGE_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\WS\TH_HSP150001_All\src\HM\Xdd\mddp_HSP_V15_1_0238_002_Softstarter_3RW5_V15.1.0.0.xml</Value>
+    </Setting>
+    <Setting Name="WM5_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\WS\WM5_WinCC_HW_Work</Value>
+    </Setting>
+    <Setting Name="CHANGESET_START" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HSP_XDD_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MDD_CONVERTER_EXE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">src\HWCN\XDDINTT\MddConverter2Mdd3\Siemens.Simatic.Hwcn.Interpreter.mdddllconverter.exe</Value>
+    </Setting>
+    <Setting Name="MDD_CONVERTER_FOLDER" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="COMPARISON_SOURCE_FOLDER" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="COMPARISON_TARGET_FOLDER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">src\HM\Xdd3</Value>
+    </Setting>
+    <Setting Name="PACKAGE_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mddp_HSP_V15_1_0238_002_Softstarter_3RW5_V15.1.0.0.xml</Value>
+    </Setting>
+    <Setting Name="CHANGESET_END" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HSP_XDDSHPASS1_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HSP_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\WS\TH_HSP150001_All</Value>
+    </Setting>
+    <Setting Name="HSP_TOOLTIPS_OTHER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">languages\Simatic\Common\Tooltips</Value>
+    </Setting>
+    <Setting Name="HSP_TOOLTIPS_ENGLISH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">src\Simatic\Common\Tooltips\en-US</Value>
+    </Setting>
+    <Setting Name="TOOLTIP_FILE_PATTERN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CTHWCSOSTES3RW5*.zip</Value>
+    </Setting>
+    <Setting Name="WM5_TOOLTIPS_OTHER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">languages\Simatic\Common\Tooltips</Value>
+    </Setting>
+    <Setting Name="WM5_TOOLTIPS_ENGLISH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">src\Simatic\Common\Tooltips\en-US</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

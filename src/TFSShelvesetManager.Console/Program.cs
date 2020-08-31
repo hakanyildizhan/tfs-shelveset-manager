@@ -4,38 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using TFSShelvesetManager.Core;
-using TFSShelvesetManager.Core.Helpers;
-using TFSShelvesetManager.Core.Model;
-using TFSShelvesetManager.Core.Service;
-using TFSShelvesetManager.Core.ViewModel;
+using TFSHelper.Core;
+using TFSHelper.Core.Helpers;
+using TFSHelper.Core.Model;
+using TFSHelper.Core.Service;
+using TFSHelper.Core.ViewModel;
 
 namespace TFSShelvesetManager.Console
 {
     class Program
     {
+        static TFSManager tfs;
+        static VersionControl vc;
+
         static void Main(string[] args)
         {
-            FileHelper.EnsureArtifactFolders();
-            //TFSManager tfs = new TFSManager();
-            //VersionControl vc = tfs.GetService<VersionControl>();
-            //ShelvingArgs shelvingArgs = new ShelvingArgs()
-            //{
-            //    WorkspaceName = "WM5_WinCC_HW_Work",
-            //    ShelvesetName = "test_shelve",
-            //    ShelvingOption = ShelvingOption.Normal
-            //};
-            //vc.ShelvePendingChanges(shelvingArgs);
-
-            //ShelvesetViewModel shelvesetVM = new ShelvesetViewModel();
-            //shelvesetVM.UpdateShelvesetTest("RQ2138190_work");
+            //FileHelper.EnsureArtifactFolders();
 
             // baseless merge
-            TFSManager tfs = new TFSManager();
-            VersionControl vc = tfs.GetService<VersionControl>();
-
-            MergeBetweenHSPBranches(vc);
-            MergeBetweenHSPBranchesCSharp(vc);
+            tfs = new TFSManager();
+            vc = tfs.GetService<VersionControl>();
 
             WriteLine("Finished.");
             ReadLine();
@@ -46,12 +34,12 @@ namespace TFSShelvesetManager.Console
             MergeArgs mergeArgs = new MergeArgs()
             {
                 Baseless = true,
-                ChangesetStart = 2646671,
-                ChangesetEnd = 2669705,
+                ChangesetStart = 2224363,
+                ChangesetEnd = 2692885,
                 SourceBranch = "TH_HSP1500_All",
                 TargetBranch = "TH_HSP150001_All",
-                SourceBranchPathToConsider = "$/TIA/_Src/HSP/dev/TH_HSP1500_All/src/HM/HSP/HSP_V15_0238_001_Softstarter_3RW5",
-                TargetBranchPathToConsider = "$/TIA/_Src/HSP/dev/TH_HSP150001_All/src/HM/HSP/HSP_V15_1_0238_001_Softstarter_3RW5",
+                SourceBranchPathToConsider = "$/TIA/_Src/HSP/dev/TH_HSP1500_All/src/HWCN/BLO/BusinessLogic/#_Test/BusinessLogic.SiriusHSP.Test",
+                TargetBranchPathToConsider = "$/TIA/_Src/HSP/dev/TH_HSP150001_All/src/HWCN/BLO/BusinessLogic/#_Test/BusinessLogic.SiriusHSP.Test",
                 TargetWorkspacePath = @"D:\WS\TH_HSP150001_All",
                 TargetWorkspaceName = "TH_HSP150001_All"
             };
@@ -77,6 +65,25 @@ namespace TFSShelvesetManager.Console
             };
 
             vc.MergeBetweenVersions(mergeArgs);
+        }
+
+        static void UpdateShelveset()
+        {
+            ShelvesetViewModel shelvesetVM = new ShelvesetViewModel();
+            shelvesetVM.UpdateShelvesetTest("RQ2138190_work");
+        }
+
+        static void ShelveChanges()
+        {
+            TFSManager tfs = new TFSManager();
+            VersionControl vc = tfs.GetService<VersionControl>();
+            ShelvingArgs shelvingArgs = new ShelvingArgs()
+            {
+                WorkspaceName = "WM5_WinCC_HW_Work",
+                ShelvesetName = "test_shelve",
+                ShelvingOption = ShelvingOption.Normal
+            };
+            vc.ShelvePendingChanges(shelvingArgs);
         }
 
         static void WriteLine(string lineToWrite)
