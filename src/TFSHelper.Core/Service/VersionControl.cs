@@ -378,6 +378,25 @@ namespace TFSHelper.Core.Service
         }
 
         /// <summary>
+        /// Gets changeset IDs associated with given path.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public List<int> GetChangesetsForPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return null;
+            else
+            {
+                Workspace ws = vcs.GetWorkspace(path);
+                if (ws != null)
+                    return vcs.QueryHistory(path, RecursionType.Full).Select(c => c.ChangesetId).ToList();
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// Creates a <see cref="Workspace"/>.
         /// </summary>
         /// <param name="workspaceArgs">Workspace creation arguments.</param>
@@ -444,7 +463,7 @@ namespace TFSHelper.Core.Service
         /// Merges changes from a source branch to a target branch.
         /// </summary>
         /// <param name="mergeArgs">Arguments for the merge operation.</param>
-        public void Merge(MergeArgs mergeArgs)
+        public MergeResult Merge(MergeArgs mergeArgs)
         {
             Workspace workspace = GetWorkspace(mergeArgs.TargetWorkspaceName);
 
@@ -457,7 +476,16 @@ namespace TFSHelper.Core.Service
             if (mergeArgs.Baseless) mergeOption = MergeOptions.Baseless;
 
             // pend the merge
-            workspace.Merge(sourceBranchPath, targetBranchPath, changesetStart, changesetEnd, LockLevel.CheckOut, RecursionType.Full, mergeOption);
+            var result = workspace.Merge(sourceBranchPath, targetBranchPath, changesetStart, changesetEnd, LockLevel.CheckOut, RecursionType.Full, mergeOption);
+            return new MergeResult()
+            {
+                Conflicts = result.NumConflicts,
+                Failures = result.NumFailures,
+                Files = result.NumFiles,
+                Operations = result.NumOperations,
+                Updates = result.NumUpdated,
+                FailureMessages = result.NumFailures == 0 ? null : result.GetFailures().Select(f => f.Message).ToList()
+            };
         }
     }
 }

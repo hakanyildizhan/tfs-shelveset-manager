@@ -26,8 +26,9 @@ namespace TFSHelper.Core.Service
         Workspace CreateWorkspace(WorkspaceArgs workspaceArgs);
         void DeleteWorkspace(string workspaceName);
         void MergeBetweenVersions(MergeArgs mergeArgs);
-        void Merge(MergeArgs mergeArgs);
+        MergeResult Merge(MergeArgs mergeArgs);
         List<ChangesetViewModel> GetChangesetsForFile(string localFilePath, int startingChangesetNumber = 0, string[] workitemTypeFilter = null);
+        List<int> GetChangesetsForPath(string path);
         int GetLastChangesetIDForPath(string path);
         void CheckoutFiles(List<string> fileList);
         UndoPendingChangesResult UndoPendingChanges(string localPath);

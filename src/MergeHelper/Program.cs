@@ -26,7 +26,7 @@ namespace MergeHelper
             IServiceCollection serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
-            Application app = new Application(serviceCollection);
+            var app = new Application2(serviceCollection);
             app.Start();
             Console.Write("Press Enter to exit.");
             Console.ReadLine();

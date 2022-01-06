@@ -288,6 +288,7 @@
     <Compile Include="Subscription\SubscriptionManager.cs" />
     <Compile Include="TFSManager.cs" />
     <Compile Include="ViewModel\ChangesetViewModel.cs" />
+    <Compile Include="Model\MergeResult.cs" />
     <Compile Include="ViewModel\ShelvesetViewModel.cs" />
     <Compile Include="ViewModel\UndoPendingChangesResult.cs" />
     <Compile Include="ViewModel\WorkitemViewModel.cs" />
